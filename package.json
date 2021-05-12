@@ -1,0 +1,23 @@
+{
+  "name": "learn-webpack-source",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IEUNJI/learn-webpack-source.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IEUNJI/learn-webpack-source/issues"
+  },
+  "homepage": "https://github.com/IEUNJI/learn-webpack-source#readme",
+  "dependencies": {
+    "tapable": "^2.2.0"
+  }
+}
