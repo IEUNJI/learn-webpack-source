@@ -1,0 +1,99 @@
+打包命令：npx webpack
+执行 node_modules/.bin/webpack.cmd
+使用 node 执行 webpack/bin/webpack.js
+执行 webpack-cli/package.json 中的 bin['webpack-cli'] 文件，即 webpack-cli/bin/cli.js
+
+webpack 执行结果为 Compiler 实例，Compiler 继承自 Tapable，hooks 如下：
+
+environment SyncHook 设置 node 环境变量
+afterEnvironment SyncHook 设置 node 环境变量完成
+entryOption SyncBailHook context,entry 解析入口文件
+afterPlugins SyncHook compiler 挂载插件结束
+afterResolvers SyncHook compiler 路径解析器初始化后
+beforeRun AsyncSeriesHook compiler 开始编译前
+run AsyncSeriesHook compiler 开始编译
+normalModuleFactory SyncHook normalModuleFactory 创建普通模块工厂
+contextModuleFactory SyncHook contextModulefactory 创建上下文模块工厂（类似 externals）
+beforeCompile AsyncSeriesHook params 开始编译前
+compile SyncHook params 开始编译
+thisCompilation SyncHook compilation,params 编译启动
+compilation SyncHook compilation,params 创建 compilation 对象
+make AsyncParallelHook compilation 编译核心
+afterCompile AsyncSeriesHook compilation 编译完成
+shouldEmit SyncBailHook compilation 询问是否生成资源文件
+emit AsyncSeriesHook compilation 生成资源文件
+assetEmitted AsyncSeriesHook file,content 资源文件已生成
+afterEmit AsyncSeriesHook compilation 资源文件生成后
+done AsyncSeriesHook stats 结束
+
+Compilation 继承自 Tapable，hooks 如下（在 Compiler 的 make 钩子后触发）：
+
+addEntry SyncHook entry,name 添加入口
+buildModule SyncHook module 编译入口模块
+normalModuleLoader SyncHook loaderContext,module 拿到普通模块加载器
+succeedModule SyncHook module 成功加载模块
+succeedEntry SyncHook entry,name,module 入口解析成功
+finishModules AsyncSeriesHook modules 完成模块的编译
+seal SyncHook 封包，一旦封包，就不能再向内添加新的模块了
+optimizeDependenciesBasic SyncBailHook modules 优化依赖项
+optimizeDependencies SyncBailHook modules
+optimizeDependenciesAdvanced SyncBailHook modules
+afterOptimizeDependencies SyncHook modules
+beforeChunks SyncHook 生成 chunk 前
+log SyncBailHook origin,logEntry
+log SyncBailHook origin,logEntry
+afterChunks SyncHook chunks 生成 chunk 后
+optimize SyncHook 优化
+optimizeModulesBasic SyncBailHook modules 优化模块
+optimizeModules SyncBailHook modules
+optimizeModulesAdvanced SyncBailHook modules
+afterOptimizeModules SyncHook modules
+optimizeChunksBasic SyncBailHook chunks,chunkGroups 优化 chunk
+optimizeChunks SyncBailHook chunks,chunkGroups
+optimizeChunksAdvanced SyncBailHook chunks,chunkGroups
+afterOptimizeChunks SyncHook chunks,chunkGroups
+optimizeTree AsyncSeriesHook chunks,modules 优化树
+afterOptimizeTree SyncHook chunks,modules
+optimizeChunkModulesBasic SyncBailHook chunks,modules 优化 chunk module
+optimizeChunkModules SyncBailHook chunks,modules
+optimizeChunkModulesAdvanced SyncBailHook chunks,modules
+afterOptimizeChunkModules SyncHook chunks,modules
+shouldRecord SyncBailHook 询问是否生成 stats 文件
+reviveModules SyncHook modules,records
+optimizeModuleOrder SyncHook modules 优化模块顺序
+advancedOptimizeModuleOrder SyncHook modules
+beforeModuleIds SyncHook modules 处理模块 ID
+moduleIds SyncHook modules
+optimizeModuleIds SyncHook modules
+afterOptimizeModuleIds SyncHook modules
+reviveChunks SyncHook chunks,records
+optimizeChunkOrder SyncHook chunks 优化 chunk 顺序
+beforeChunkIds SyncHook chunks 处理 chunk ID
+optimizeChunkIds SyncHook chunks
+afterOptimizeChunkIds SyncHook chunks
+recordModules SyncHook modules,records 记录模块
+recordChunks SyncHook chunks,records 记录 chunk
+beforeHash SyncHook 生成 hash 前
+chunkHash SyncHook chunk,chunkHash 生成 chunk hash
+contentHash SyncHook chunk 生成 content hash
+afterHash SyncHook 生成 hash 后
+recordHash SyncHook records 记录 hash
+beforeModuleAssets SyncHook 生成模块资源前
+shouldGenerateChunkAssets SyncBailHook 询问是否生成模块资源
+beforeChunkAssets SyncHook 生成 chunk 资源前
+chunkAsset SyncHook chunk,filename
+additionalChunkAssets SyncHook chunks
+record SyncHook compilation,records
+additionalAssets AsyncSeriesHook
+optimizeChunkAssets AsyncSeriesHook chunks
+afterOptimizeChunkAssets SyncHook chunks
+optimizeAssets AsyncSeriesHook assets
+afterOptimizeAssets SyncHook assets
+needAdditionalSeal SyncBailHook
+afterSeal AsyncSeriesHook
+needAdditionalPass SyncBailHook
+
+入口 Entry：
+模块 Module：
+代码块 Chunk：
+资源 Asset：
