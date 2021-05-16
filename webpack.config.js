@@ -16,12 +16,9 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
-          {
-            loader: 'my-babel-loader',
-            options: {
-              params: 'hello'
-            }
-          }
+          'loader1',
+          'loader2',
+          'loader3'
         ]
       }
     ]

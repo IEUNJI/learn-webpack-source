@@ -3,4 +3,8 @@ function loader2(inputSource) {
   return inputSource + '// loader2\r\n';
 }
 
+loader2.pitch = function () {
+  console.log('loader2 pitch');
+};
+
 module.exports = loader2;
