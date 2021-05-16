@@ -93,7 +93,13 @@ needAdditionalSeal SyncBailHook
 afterSeal AsyncSeriesHook
 needAdditionalPass SyncBailHook
 
-入口 Entry：
-模块 Module：
-代码块 Chunk：
-资源 Asset：
+入口 Entry
+模块 Module
+代码块 Chunk
+资源 Asset
+
+每一个文件就是一个模块，模块根据依赖关系生成 Chunk：
+1. 每一个入口文件就是一个 Chunk，此入口文件和依赖的模块生成一个 Chunk。
+2. 动态导入的模块会生成一个 Chunk，这个 Chunk 里包含动态模块和其依赖的模块。
+3. splitChunks 配置可以实现同步（入口）的代码分割，将多个 Chunk 里相同的模块提取为单独的 Chunk；
+   还可以把 node_modules 里的模块提取为单独的 Chunk。
