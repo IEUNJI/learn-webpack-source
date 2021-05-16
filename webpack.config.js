@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  devtool: 'none',
+  devtool: 'source-map',
   resolveLoader: {
     modules: ['node_modules', 'loaders']
   },
@@ -16,9 +16,12 @@ module.exports = {
       {
         test: /\.js$/,
         use: [
-          'loader1',
-          'loader2',
-          'loader3'
+          {
+            loader: 'my-babel-loader',
+            options: {
+              params: 'hello'
+            }
+          }
         ]
       }
     ]
