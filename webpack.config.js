@@ -7,5 +7,20 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  devtool: 'none'
+  devtool: 'none',
+  resolveLoader: {
+    modules: ['node_modules', 'loaders']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: [
+          'loader1',
+          'loader2',
+          'loader3'
+        ]
+      }
+    ]
+  }
 };
