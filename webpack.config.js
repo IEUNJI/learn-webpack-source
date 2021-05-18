@@ -14,10 +14,22 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.less$/,
+        test: /\.css$/,
         use: [
           'my-style-loader',
-          'my-less-loader'
+          'my-css-loader'
+        ]
+      },
+      {
+        test: /\.jpg$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 0,
+              esModule: false
+            }
+          }
         ]
       }
     ]
