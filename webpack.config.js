@@ -24,10 +24,10 @@ module.exports = {
         test: /\.jpg$/,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'my-url-loader',
             options: {
-              limit: 0,
-              esModule: false
+              limit: 100 * 1024,
+              filename: '[name].[hash].[ext]'
             }
           }
         ]
