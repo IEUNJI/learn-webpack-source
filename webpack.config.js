@@ -14,11 +14,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.less$/,
         use: [
-          'loader1',
-          'loader2',
-          'loader3'
+          'my-style-loader',
+          'my-less-loader'
         ]
       }
     ]
