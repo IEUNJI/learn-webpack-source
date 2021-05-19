@@ -1,8 +1,12 @@
 const path = require('path');
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const DonePlugin = require('./plugins/DonePlugin');
 const OptimizePlugin = require('./plugins/OptimizePlugin');
 const AsyncPlugin = require('./plugins/AsyncPlugin');
 const ZipPlugin = require('./plugins/ZipPlugin');
+const PrefetchPlugin = require('./plugins/PrefetchPlugin');
 
 module.exports = {
   mode: 'development',
@@ -21,6 +25,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'index.html'
+    }),
     new DonePlugin({
       message: '编译完成'
     }),
@@ -28,6 +36,7 @@ module.exports = {
     new AsyncPlugin(),
     new ZipPlugin({
       name: 'assets.zip'
-    })
+    }),
+    new PrefetchPlugin()
   ]
 };
