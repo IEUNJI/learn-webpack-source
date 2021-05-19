@@ -1,4 +1,8 @@
 const path = require('path');
+const DonePlugin = require('./plugins/DonePlugin');
+const OptimizePlugin = require('./plugins/OptimizePlugin');
+const AsyncPlugin = require('./plugins/AsyncPlugin');
+const ZipPlugin = require('./plugins/ZipPlugin');
 
 module.exports = {
   mode: 'development',
@@ -13,25 +17,17 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'my-style-loader',
-          'my-css-loader'
-        ]
-      },
-      {
-        test: /\.jpg$/,
-        use: [
-          {
-            loader: 'my-url-loader',
-            options: {
-              limit: 100 * 1024,
-              filename: '[name].[hash].[ext]'
-            }
-          }
-        ]
-      }
+
     ]
-  }
+  },
+  plugins: [
+    new DonePlugin({
+      message: '编译完成'
+    }),
+    new OptimizePlugin(),
+    new AsyncPlugin(),
+    new ZipPlugin({
+      name: 'assets.zip'
+    })
+  ]
 };

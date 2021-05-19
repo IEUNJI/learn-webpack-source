@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.14.2",
     "css-selector-tokenizer": "^0.7.3",
     "file-loader": "^6.2.0",
+    "jszip": "^3.6.0",
     "less": "^4.1.1",
     "mime": "^2.5.2",
     "postcss": "^8.2.15",

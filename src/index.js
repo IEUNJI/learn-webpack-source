@@ -1,5 +1,8 @@
-import avatar from './avatar.jpg';
+console.log('index');
 
-const img = new Image();
-img.src = avatar;
-document.body.appendChild(img);
+import(
+  /* webpackChunkName: "lazy" */
+  './lazy'
+).then(module => {
+  console.log(module.default);
+});

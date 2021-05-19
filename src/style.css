@@ -1,8 +1,0 @@
-@import "./base.css";
-
-.avatar {
-  width: 200px;
-  height: 200px;
-  background-image: url("./avatar.jpg");
-  background-size: cover;
-}
