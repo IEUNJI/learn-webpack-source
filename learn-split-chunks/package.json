@@ -1,0 +1,21 @@
+{
+  "name": "learn-split-chunks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./webpack.run.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-generator": "^6.26.1",
+    "babel-traverse": "^6.26.0",
+    "babel-types": "^6.26.0",
+    "babylon": "^6.18.0",
+    "ejs": "^3.1.6",
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0"
+  }
+}
