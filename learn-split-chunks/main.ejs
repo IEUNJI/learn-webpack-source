@@ -25,6 +25,41 @@
     return module.exports;
   }
 
+  const installedChunks = {
+    main: 0
+  };
+
+  __webpack_require__.e = chunkId => {
+    if (installedChunks[chunkId] === 0) {
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve, reject) => {
+      installedChunks[chunkId] = resolve;
+      
+      const script = document.createElement('script');
+      script.src = chunkId;
+      document.body.appendChild(script);
+    });
+  };
+
+  __webpack_require__.t = moduleId => {
+    const exports = __webpack_require__(moduleId);
+
+    return {
+      default: exports
+    };
+  };
+
+  window.webpackJsonp = (chunkId, modules) => {
+    Object.keys(modules).forEach(moduleId => {
+      __webpack_modules__[moduleId] = modules[moduleId];
+    });
+    
+    installedChunks[chunkId]();
+    installedChunks[chunkId] = 0;
+  };
+
   __webpack_require__('<%-entry%>');
 
 })();
